@@ -1,0 +1,98 @@
+    :root {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;      
+    }
+    * {
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    body {
+  
+    }
+
+    nav {
+      display: flex;
+      margin: 1rem 0;
+      gap: 1rem; 
+      justify-content: center;
+    }
+
+    section, header {
+      border-bottom: 1px gainsboro solid;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      scroll-margin-top: 6rem;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      background-color: white;
+      width: 100%;
+    }
+
+    main {
+      width: 90%;
+      margin: 0 auto;    
+      margin-top: 5rem;
+    }
+
+    .bg-azure {
+      background-color: azure;
+      padding: 4px;
+    }
+    .ml-4 {
+      margin-left: 10px;
+    }
+    code, samp, kbd {
+      font-family: monospace;
+      font-size: 1rem;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    code {
+      color: lightgreen;
+      background-color: black;
+    }
+
+    samp {
+      color: blue;
+      background-color: aliceblue;
+    }
+
+    kbd {
+      color: blue;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    figure {
+      text-align: center; 
+      margin: 20px 0;
+    }
+
+    img {
+      border: 1px solid #ddd; 
+      border-radius: 8px; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);      
+    }
+
+    .img-grande {
+      width: 90%;       /* Ocupa el 100% del contenedor donde está metido el curso */
+      max-width: 850px;  /* Pero nunca se estirará más de este tamaño para no pixelarse */
+      height: auto; 
+    }
+
+    figcaption {
+      font-size: 0.9em; color: #666; font-style: italic; margin-top: 5px;
+    }
+
+    ul {
+      list-style-type: circle;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+    }

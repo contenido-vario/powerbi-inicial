@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 - PowerBI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="pb.css">
+  <link rel="shortcut icon" href="./img/powerbi.svg" type="image/svg">
+</head>
+<body>
+<header>
+  <nav>
+    <a class="flex-1" href="#inicio"><img src="./img/home.svg" alt="Inicio"></a>
+    <a class="flex-1" href="#t1">Introducción y modelado</a>
+    <a class="flex-1" href="#t2">Primer Dashboard</a>
+    <a class="flex-1" href="#t3">Fórmulas y Vistas</a>
+    <a class="flex-1" href="#t4">Modelar Datos</a>
+    <a class="flex-1" href="#t5">Trabajar Múltiples Tablas</a>
+  </nav>
+</header>
+<main>
+  <section id="inicio">  
+    <h1>Introducción a Microsoft Power BI (Actualizado 2026)</h1>
+
+    <p>Este curso está destinado a enseñar los fundamentos de Microsoft Power BI a personas con poca o ninguna experiencia previa. Con él harás una introducción en la plataforma Power BI utilizando una variedad de conjuntos de datos y utilizando el enfoque "aprender haciendo".</p>
+
+    <p>Power BI te dará la oportunidad de presentar los resultados de tu trabajo en informes interactivos llamados <strong>dashboards</strong> (cuadros de mando), de una forma dinámica, interactiva y actualizable. Después de diseñar un informe no tendrás por qué tocarlo más, a menos que quieras realizar cambios en el mismo, ahorrando el tiempo que necesitas para realizar otras tareas.</p>
+
+    <p>El curso se realizará mediante ejercicios guiados. <span class="bg-azure">Al acabar el curso, estarás en capacidad de visualizar, analizar y relacionar datos y presentarlos en dashboards utilizando la herramienta <strong>Power BI Desktop</strong>.</span></p>
+
+    <p><strong>En resumen:</strong></p>
+    <ul>
+        <li>Conocerás el entorno de diseño y visualización de datos de Power BI.</li>
+        <li>Aprenderás a importar y relacionar datos de diferentes fuentes (Excel, archivos de texto, bases de datos, etc.).</li>
+        <li>Aprenderás a hacer fórmulas básicas en DAX (el lenguaje de fórmulas de Power BI) de forma manual y asistida por Inteligencia Artificial.</li>
+        <li>Diseñarás dashboards interactivos utilizando las mejores prácticas visuales.</li>
+        <li>Utilizaremos <strong>Power BI Desktop</strong> como la herramienta principal para la exploración de datos y la creación de informes.</li>
+    </ul>
+
+  </section>
+
+  <section id="t1">
+    <h2>Tema 1: Elementos Introductorios y Modelado</h2>
+
+    <p>En este tema conocerás más sobre los elementos que integran Power BI y de qué trata la Inteligencia de Negocios (Business Intelligence). Además, aprenderás a instalar <strong>Power BI Desktop</strong> y verás una introducción a lo que es el modelado de datos.</p>
+
+    <h3>1.1 Componentes de Power BI</h3>
+    <p><strong>¿Qué es Power BI?</strong></p>
+    <p>Power BI es un ecosistema de análisis e inteligencia empresarial basado en la nube de Microsoft. Hoy en día, se integra de forma nativa como una pieza fundamental de <strong>Microsoft Fabric</strong> (la plataforma unificada de datos e IA de Microsoft).</p>
+
+    <p>Power BI consta de varios componentes que funcionan juntos, empezando por estos tres bloques básicos:</p>
+    <figure>
+      <img class="img-grande" src="./img/pbi-intro_02.png" alt="Flujo de trabajo de los componentes de Power BI" >
+        <figcaption>Diagrama del ecosistema: Creación en Desktop, publicación en el Servicio y consumo en Mobile. (Microsoft)</figcaption>
+    </figure>
+
+    <ol>
+        <li><strong>Power BI Desktop:</strong> Una aplicación de escritorio gratuita para Windows destinada a la creación de modelos e informes.</li>
+        <li><strong>Servicio Power BI:</strong> Un portal en línea (Software As A Service) basado en la nube para publicar y compartir los informes.</li>
+        <li><strong>Power BI Mobile:</strong> Aplicaciones para dispositivos móviles (iOS y Android) para visualizar los informes en cualquier lugar.</li>
+    </ol>
+
+    <p>La herramienta central de desarrollo es <strong>Power BI Desktop</strong>.<br>Desde ella, diseñarás los informes de forma local y los guardarás como archivos con extensión <strong>.pbix</strong>.</p>
+
+    <blockquote class="bg-azure">
+        <p class="ml-4"><strong>Nota para usuarios de Mac:</strong> Power BI Desktop es una aplicación exclusiva para el sistema operativo Windows. Si utilizas un ordenador Mac, para seguir este curso necesitarás utilizar un entorno virtualizado (como Parallels o Boot Camp) o una máquina virtual en la nube.</p>
+    </blockquote>
+
+    <p>Dentro de <strong>Power BI Desktop</strong> se encuentra el <strong>Editor de Power Query</strong>, la herramienta encargada de conectar tus fuentes de datos y realizar todos los pasos de limpieza y preparación necesarios. Una vez listos, los datos se cargan en el motor analítico en memoria de <strong>Power BI</strong> (motor <b>VertiPaq</b>), que comprime la información para trabajar de forma ultra rápida con millones de filas.</p>
+
+    <p>Una vez que los informes están listos, se publican en el <strong>Servicio Power BI</strong> (accesible desde el portal web de la organización), donde podrás compartirlos de manera segura con tus compañeros de trabajo o clientes.</p>
+
+    <p>Una vez que hayas configurado una cuenta con el servicio Power BI, puedes subir tus archivos PBIX terminados o publicarlos directamente desde Power BI Desktop. Desde aquí, puedes compartir fácilmente los informes con tus compañeros que también tengan acceso al servicio.</p>
+
+    <blockquote class="bg-azure">
+        <p class="ml-4"><strong>⚠️ Advertencia de Seguridad muy importante:</strong> Power BI cuenta con una función llamada <strong>"Publicar en la web"</strong> que permite incrustar informes de forma pública en blogs o páginas web. Sin embargo, debes tener extremo cuidado: esta opción hace que tus datos sean 100% públicos en internet sin ninguna contraseña. Debido a este riesgo de filtración de datos, la mayoría de las empresas desactivan esta función por defecto para proteger su información confidencial.</p>
+    </blockquote>
+
+    <h3>1.2 Inteligencia Empresarial de Autoservicio (Self-Service BI)</h3>
+    <p>La Inteligencia Empresarial (BI) hace referencia a los métodos para recoger, transformar y visualizar datos en bruto para ayudar a las empresas a tomar mejores decisiones.</p>
+
+    <p>El desarrollo tradicional de BI requería de ingenieros de software y complejos almacenes de datos (Data Warehouses). Power BI revoluciona esto ofreciendo <strong>BI de autoservicio</strong>: elimina las barreras técnicas para que cualquier usuario de negocio, sin saber programar, pueda conectar sus fuentes de datos, transformarlas y diseñar gráficos informativos e interactivos, lo cual se conoce como <strong>Visualización de datos</strong>.</p>
+
+    <h3>1.3 Instalar Power BI Desktop</h3>
+    <p>Para completar este curso, debes instalar la herramienta en tu ordenador.</p>
+
+    <p>En <strong>2026</strong>, Microsoft da soporte exclusivo para <strong>Power BI Desktop</strong> en sistemas operativos modernos: <strong>Windows 10 y Windows 11</strong>. Las versiones antiguas de Windows (como Windows 7 u 8) ya no son compatibles.</p>
+
+    <h3>1.3 Instalar Power BI Desktop</h3>
+    <p>Para completar este curso, debes instalar la herramienta en tu ordenador.</p>
+
+    <p>En <strong>2026</strong>, Microsoft da soporte exclusivo para Power BI Desktop en sistemas operativos modernos: <strong>Windows 10 y Windows 11</strong>. Las versiones antiguas de Windows (como Windows 7 u 8) ya no son compatibles y no requieren que verifiques si tu sistema es de 32 o 64 bits, ya que el proceso actual lo detecta automáticamente.</p>
+
+    <p><strong>Pasos para la instalación a través de la Microsoft Store:</strong></p>
+    <ol>
+        <li>Haz clic en el botón de <strong>Inicio de Windows (🪟)</strong>, en la Barra de tareas.</li>
+        <li>Escribe directamente en tu teclado <kbd>Microsoft Store</kbd> y presiona la tecla <code>ENTER</code> (o busca el icono de una bolsa de la compra blanca con el logotipo de Microsoft).</li>
+        <li>Una vez abierta la tienda, dirígete a la barra de búsqueda (🔍) en la parte superior, escribe <kbd>Power BI Desktop</kbd> y presiona <strong>Buscar</strong>.</li>
+        <li>Selecciona la aplicación oficial de Microsoft (asegúrate de que el editor sea <em>Microsoft Corporation</em>) y haz clic en el botón azul que dice <code>Instalar</code> u <code>Obtener</code>.</li>
+    </ol>
+
+    <blockquote class="bg-azure">
+        <p class="ml-4"><strong>¿Por qué Microsoft decidió hacerlo de esta manera?</strong> Instalar Power BI desde la tienda oficial de Windows garantiza que el programa se actualice de forma automática y silenciosa todos los meses en segundo plano. Así siempre tendrás las últimas herramientas e interfaz del 2026 sin tener que reinstalar el programa manualmente cada mes.</p>
+    </blockquote>
+
+    <p>Al abrir <strong>Power BI Desktop</strong> por primera vez tras la instalación, verás una pantalla de bienvenida que te invita a iniciar sesión. No es obligatorio hacerlo para diseñar tus primeros informes; puedes cerrar esa ventana haciendo clic en la <strong>X</strong> de la esquina superior derecha e ir directo al lienzo de trabajo.</p>
+    </ol>
+    <p><em>(Instalar Power BI desde la tienda garantiza que se actualice automáticamente todos los meses sin perder tus configuraciones).</em></p>
+
+    <p>Después de instalar <strong>Power BI Desktop</strong>, podrás ver el siguiente icono en el menú de Inicio.</p>
+
+    <figure>
+      <img src="./img/icono.jpg" alt="Icono de Power BI" >
+        <figcaption>Icono de Power BI</figcaption>
+    </figure>
+
+    <h3>1.4 Modelización de datos</h3>
+    <p>El modelo de datos es la estructura interna de tablas y relaciones que soporta tu informe; es la parte que tu público no ve, pero es la más importante. Un modelo puede tener una o muchas tablas conectadas entre sí mediante datos que comparten (por ejemplo, conectar una tabla de "Clientes" con una tabla de "Ventas" a través de un código de identificación único llamado ID). Estas conexiones se denominan <strong>relaciones</strong>.</p>
+
+    <p>El proceso básico de modelado sigue tres pasos (ETL):</p>
+    <ol>
+        <li><strong>Importar</strong> (<i><b>E</b>xtract</i>): Conectarse a las fuentes de datos.</li>
+        <li><strong>Transformar</strong> (<i><b>T</b>ransform</i>): Limpiar y estructurar los datos en el Editor de Power Query.</li>
+        <li><strong>Cargar</strong> (<i><b>L</b>oad</i>): Llevar los datos limpios al lienzo de Power BI para empezar a diseñar.</li>
+    </ol>
+
+  </section>
+
+  <section id="t2">
+    <h2>Tema 2: Creando el primer Dashboard con datos de Excel</h2>
+
+    <h3>Objetivos y Técnicas</h3>
+    <ul>
+        <li>Importar datos desde un archivo Excel (<samp><a download href="./assets/countries.xlsx">countries.xlsx</a></samp>).</li>
+        <li>Seleccionar y limpiar columnas en <strong>Power Query</strong>.</li>
+        <li>Diseñar un dashboard interactivo utilizando la nueva interfaz visual.</li>
+    </ul>
+
+    <h3>2.1 Cargar los datos y transformarlos</h3>
+    <p><strong>Caso práctico:</strong> A partir de una lista de países, crearemos un dashboard interactivo para ver la población por región, el área por continente y el estatus de los países.</p>
+
+    <ol>
+        <li>
+        <p>Abre Power BI Desktop. En la cinta de opciones superior (<strong>Inicio</strong>), haz clic en el botón <strong>Libro de Excel</strong>.</p>
+        <figure>
+            <img class="img-grande" src="./img/origen-datos.png" alt="seleccionar origen de datos" >
+            <figcaption>Seleccionar Origen de Datos</figcaption>
+        </figure>
+        </li>
+        <li>Selecciona tu archivo <samp>countries.xlsx</samp>. En la ventana del "Navegador", marque la casilla de la tabla <strong>Countries</strong> y haz clic en el botón <strong>Transformar datos</strong> (esto abrirá el <strong>Editor de Power Query</strong>).</li>
+        <li><p><strong>Limpieza de columnas:</strong> En Power Query, haz clic derecho sobre las cabeceras de las columnas que <strong>no</strong> necesites y selecciona <code>Quitar</code>. Conserva únicamente: <em>Nombre Oficial, Continente, Región, Estatus, Kilómetros Cuadrados y Población</em>.</p>
+        <figure>
+            <img class="img-grande" src="./img/powerquery.png" alt="pantalla powerquery" >
+            <figcaption>pantalla powerquery</figcaption>
+        </figure>    
+        </li>
+        <li><strong>Renombrar:</strong> Haz doble clic sobre la cabecera de la columna <strong>Kilómetros Cuadrados</strong> y cambia su nombre a <strong>Área</strong>.</li>
+        <li><strong>Cargar:</strong> En la esquina superior izquierda de Power Query, haz clic en <code>Cerrar y aplicar</code>. Volverás a la pantalla principal de Power BI Desktop.</li>
+        <li>Guarda tu archivo seleccionando <code>Archivo > Guardar</code> con el nombre <kbd>paises.pbix</kbd>.</li>
+    </ol>
+
+    <blockquote class="bg-azure">
+        <p class="ml-4"><strong>Nota:</strong> Power Query registra cada acción que realizas en el panel derecho llamado <code>Pasos aplicados</code>. <br>Si te equivocas, puedes borrar el paso haciendo clic en la <code>X</code> a su lado. Cada vez que actualices el informe en el futuro, Power BI repetirá estos pasos automáticamente.</p>
+    </blockquote>
+
+    <h3>2.2 Generar el dashboard con los gráficos</h3>
+    <p>Al regresar al lienzo de Power BI, utilizaremos la interfaz de <strong>interacción en el objeto</strong> para crear los elementos visuales.</p>
+
+    <ol>
+        <li>En el extremo derecho de la pantalla, despliega el panel <strong>Datos</strong>. Verás tu tabla <samp>Countries</samp>.
+        Clica sobre la flecha desplegable a la izquierda del nombre de tu tabla.</li>
+        <li><p>Haz clic sobre el campo <code>Población</code> y arrástralo directamente al centro del lienzo blanco. Power BI detectará automáticamente que es un campo numérico y creará un gráfico de barras predeterminado con el total mundial.</p>
+        <figure>
+            <img class="img-grande" src="./img/suma-poblacion.png" alt="grafico con la suma de población" >
+            <figcaption>Gráfico 1. Suma de Población por Región</figcaption>
+        </figure> 
+        <p>Al hacer clic en tu gráfico, fíjate en el extremo derecho de tu pantalla. Verás en el panel de <code>Visualizaciones</code>, tres pequeños iconos verticales:</p>
+        <figure>
+            <img src="./img/iconos-visualizaciones.png" alt="iconos panel de visualizaciones" >
+            <figcaption>Iconos del panel de visualizaciones</figcaption>
+        </figure> 
+        <ul>
+          <li>El primer icono de la izquierda se denomina <code>Compilar visual</code> y permite seleccionar el tipo de gráfico e indicar los campos que irán en el Eje X, Eje Y, Leyenda, etc.</li>
+          <li>El segundo icono <code>Formato visual</code>, se usa para cambiar el formato de cada parte del gráfico (o visual, como lo denomina PowerBI)</li>
+          <li>El tercer icono (<code>Analytics</code>) permite agregar líneas de tendencia o medidas estadísticas al gráfico</li>
+        </ul>
+        </li>
+        <li><p>Para desglosar tu gráfico por región, asegúrate de tener seleccionado el icono <code>Compilar visual</code> y arrastra el campo <samp>Región</samp> directamente al recuadro del <code>Eje X</code> en el Panel de visualizaciones.</p></li>
+        <li><p>Podrás cambiar los títulos y colores del mismo, seleccionando el icono <code>Formato visual</code> y explorando las diferentes opciones que ofrece.</p></li> 
+        <li><p>Cambia el título del Gráfico a <kbd>Población Mundial por Región</kbd>.</p></li>
+        <li>
+          <p>Completa tu dashboard deseleccionando el gráfico actual (haciendo clic en el fondo blanco) e insertando los siguientes visuales desde la sección de visualizaciones en la cinta superior:</p>
+            <figure>
+              <img src="./img/visuales.png" alt="Visuales de Power BI" >
+              <figcaption>Visuales de Power BI</figcaption>
+            </figure>  
+            <ul>
+                <li><strong>Gráfico 2. (Área por continente)</strong>:<br> Selecciona el visual <code>Treemap</code>. 
+                Añade <samp>Área</samp> en el campo de <code>Valores</code> y <samp>Continente</samp> en la <code>Categoría</code>.</li>
+                <li><strong>Gráfico 3. (Países por Estatus)</strong>:<br> Selecciona <code>Gráfico de barras apiladas</code>. Añade <samp>País</samp> a <code>Eje X</code> (para que los cuente) y <samp>Estatus</samp> al <code>Eje Y</code>.</li>
+                <li><strong>Gráfico 4 (Países por Continente)</strong>:<br>
+                Selecciona <code>Gráfico circular</code>. Añade <samp>País</samp> a <code>Valores</code> y <samp>Continente</samp> a la <code>Leyenda</code>.</li>
+            </ul>
+          
+        </li>
+        <li>Finalmente, haz <em>doble clic</em> en la pestaña inferior que dice <code>Página 1</code> y renómbrala como <kbd>El Mundo</kbd>. <mark>Guarda tus cambios y cierra el archivo.</mark></li>
+    </ol>
+
+  </section>  
+
+  <section id="t3">
+    <h2>Tema 3: Fórmulas y Vistas en Power BI</h2>
+
+    <h3>3.1 Conociendo el entorno de trabajo: Las 5 Vistas de Power BI</h3>
+
+    <p>En el extremo izquierdo de tu pantalla descubrirás una barra lateral gris con cinco iconos verticales. Estas son las ventanas que te permitirán saltar entre el diseño visual, tus bases de datos y la programación profunda:</p>
+
+    <ol>
+        <li><img src="./img/chart.svg" alt="chart"> <strong>Vista de Informe:</strong> Es tu lienzo creativo. Aquí es donde diseñas la interfaz, colocas los gráficos y das forma al cuadro de mando interactivo.</li>
+        
+        <li><img src="./img/table.svg" alt="table"> <strong>Vista de Tabla:</strong> Tu hoja de datos. Es fundamental para el desarrollo de fórmulas, ya que aquí inspeccionaremos las filas y veremos el resultado inmediato de nuestras <em>Columnas Calculadas</em>.</li>
+        
+        <li><img src="./img/schema.svg" alt="schema"> <strong>Vista de Modelo:</strong> El mapa relacional. Aquí gestionamos las conexiones invisibles (relaciones) entre las diferentes tablas del modelo de datos.</li>
+        
+        <li><strong>Vista de Consulta DAX:</strong> Un laboratorio de código integrado para usuarios avanzados que permite escribir, evaluar y auditar fórmulas DAX complejas de forma rápida.</li>
+        
+        <li><strong>Vista TMDL:</strong> Una herramienta profesional pensada para desarrolladores <em>senior</em> que traduce toda la estructura técnica de tu informe a archivos de texto plano para facilitar el trabajo en equipo y el control de versiones.</li>
+    </ol>
+
+    <blockquote class="bg-azure">
+      <strong>Consejo para el curso:</strong> Durante este bloque formativo pasaremos la mayor parte del tiempo saltando entre la <strong>Vista de Informe</strong> y la <strong>Vista de Tabla</strong>. No te preocupes por los dos últimos iconos, están pensados para ingeniería de datos avanzada.
+    </blockquote>
+
+    <h3>3.2 Preparando la información</h3>
+
+    <p>Antes de importar datos de Excel a Power BI, siempre es recomendable seleccionar el rango de datos en Excel y presionar <kbd>Ctrl + T</kbd> (<code>Insertar-Tabla</code>) para <strong>convertirlo en una Tabla de Datos de Excel</strong> y asignarle a la misma, un nombre descriptivo. Esto genera referencias estructuradas y asegura que si añades más filas en Excel en el futuro, Power BI las leerá correctamente sin recortar información.</p>
+
+    <p>Abriremos el archivo <a download href="./assets/inventario.xlsx">inventario.xlsx</a> <strong>en Excel</strong> y convertiremos el rango con datos de fragancias de la hoja productos en una tabla de datos. Para ello: </p>
+
+    <ol>
+        <li>Selecciona el rango de datos que quieres convertir en tabla.</li>
+        <li>Ve al menú <code>Insertar</code> y selecciona la opción <code>Tabla</code>.</li>
+    </ol>
+
+    <figure>
+      <img  class="img-grande" src="./img/tabla-fragancias-excel.png" alt="Tabla fragancias en Excel">
+      <figcaption>Tabla <b>fragancias</b> en Excel</figcaption>
+    </figure>
+
+    <h3>3.3 Introducción a DAX: Columnas Calculadas</h3>
+
+    <p>Cuando los datos de origen no contienen un cálculo específico que necesitas, recurrimos al lenguaje <strong>DAX (Data Analysis Expressions)</strong>.</p>
+
+    <p><strong>Caso práctico (Inventario de Fragancias):</strong></p>
+    <ol>
+        <li>Importa la tabla <samp>Fragancias</samp> desde tu archivo <a download href="./assets/inventario.xlsx">inventario.xlsx</a> de Excel.</li>
+        <li>Ve a la <code>Vista de tabla</code> (menú izquierdo) y selecciona la tabla <code>Fragancias</code>.</li>
+        <li>En la cinta superior, ve a la pestaña <code>Herramientas de tablas</code> y haz clic en <code>Nueva columna</code>.</li>
+        <li>En la barra de fórmulas, escribe la siguiente expresión matemática:<br />
+        <kbd>IVA = 0.21 * [Precio coste]</kbd><br />
+        Presiona <kbd>ENTER</kbd>. Verás cómo se calcula automáticamente una nueva columna denominada <code>IVA</code>, fila por fila.</li>
+        <li>Repite el proceso para calcular el <em>Precio Final</em>:<br />
+        <kbd>Precio = [Precio coste] + [IVA]</kbd></li>
+    </ol>
+
+    <blockquote class="bg-azure">
+        <p class="ml-4"><strong>⚠️ Nota de buenas prácticas:</strong> En Power BI, crear <strong>Columnas Calculadas</strong> consume memoria física porque calcula y almacena el dato fila por fila en tu ordenador. Para cálculos acumulados o totales de tus informes (como sumas, promedios o porcentajes), la regla de oro es utilizar <strong>Medidas</strong>, las cuales no ocupan espacio ya que se calculan "al vuelo" e instantáneamente solo cuando el usuario interactúa con el reporte.</p>
+        <p class="ml-4"><em>No te preocupes si ahora mismo no entiendes del todo cómo funcionan las medidas. <strong>En el Tema 5 haremos un ejercicio práctico paso a paso</strong> donde crearemos nuestras primeras medidas DAX y verás su verdadero potencial en el dashboard.</em></p>
+    </blockquote>
+    <blockquote>
+        <p class="ml-4"><em>Tip de IA:</em> Si tienes dudas escribiendo código DAX, puedes usar el asistente de <strong>Copilot</strong> integrado en la barra de fórmulas para escribir lo que necesitas en lenguaje natural (Por ejemplo: "<em>Suma las ventas totales</em>") y la IA generará el código por ti.</p>
+    </blockquote>
+    <ol start="6">
+      <li>Guarda tu archivo seleccionando <code>Archivo > Guardar</code> con el nombre <kbd>fragancias.pbix</kbd>.</li>
+    </ol>
+
+  </section>
+
+  <section id="t4">  
+    <h2>Tema 4: Modelado y Relaciones Multitabla</h2>
+
+    <h3>Martes 21-Mayo</h3>
+
+  </section>
+
+  <section id="t5">
+    <h2>Tema 5: Transformaciones, Medidas DAX y Cuadro de Mando Final</h2>
+
+    <h3>Martes 21-Mayo</h3>
+
+  </section>
+</main>
+</body>
+</html>
