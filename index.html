@@ -265,6 +265,7 @@
         Presiona <kbd>ENTER</kbd>. Verás cómo se calcula automáticamente una nueva columna denominada <code>IVA</code>, fila por fila.</li>
         <li>Repite el proceso para calcular el <em>Precio Final</em>:<br />
         <kbd>Precio = [Precio coste] + [IVA]</kbd></li>
+        <li>Ahora crea tú solo/a la fórmula de <samp title="Valor Inventario = [Precio] * [Stock Actual]">Valor Inventario</samp>, multiplicando el <samp>Precio</samp> calculado en el punto anterior por el <samp>Stock Actual</samp></li>
     </ol>
 
     <blockquote class="bg-azure">
@@ -275,6 +276,13 @@
         <p class="ml-4"><em>Tip de IA:</em> Si tienes dudas escribiendo código DAX, puedes usar el asistente de <strong>Copilot</strong> integrado en la barra de fórmulas para escribir lo que necesitas en lenguaje natural (Por ejemplo: "<em>Suma las ventas totales</em>") y la IA generará el código por ti.</p>
     </blockquote>
     <ol start="6">
+      <li>
+        <p>Ahora, cambia a la <code>Vista Informe</code> y trata de hacer el siguiente Dashboard. Observa que al regresar a la Vista Informe, Power BI ha incorporado los nuevos campos a la lista de campos.</p>
+          <figure>
+          <img  class="img-grande" src="./img/dashboard-fragancias.png" alt="Dashboard de Fragancias">
+          <figcaption>Dashboard Tema 3</figcaption>
+          </figure>
+      </li>
       <li>Guarda tu archivo seleccionando <code>Archivo > Guardar</code> con el nombre <kbd>fragancias.pbix</kbd>.</li>
     </ol>
 
@@ -283,7 +291,54 @@
   <section id="t4">  
     <h2>Tema 4: Modelado y Relaciones Multitabla</h2>
 
-    <h3>Martes 21-Mayo</h3>
+    <h3>4.1 Relacionar tablas</h3>
+    <p>Cuando importas más de una fuente de datos, debes conectarlas para que puedan interactuar en tus reportes.</p>
+
+    <ol>
+        <li>
+        <p class="mb-1">Importa una nueva tabla que llamarás <samp>casas</samp> desde tu archivo de Excel <a download href="./assets/casas.xlsx">casas.xlsx</a>.</p>
+        <p class="mb-1">Para ello deberás clicar sobre el menú <code>Archivo</code> y seleccionar la opción <code>Obtener datos</code>.</p>
+        <p class="mb-1">Ahora tendrás dos tablas en tu panel de datos: <samp>fragancias</samp> y <samp>casas</samp>.</p>
+        </li>
+        <li>Ve a la <code>Vista de modelo</code> (en el menú izquierdo).</li>
+        <li>Por lo general, la función de autodetección de Power BI unirá de forma automática las tablas <strong>si detecta que comparten una columna con el mismo nombre y tipo de dato</strong>.</li>
+        <li>Si no lo hace de forma automática, puedes crear la relación tú mismo de forma manual: haz clic sobre la columna <samp>Id</samp> de la tabla de origen y arrástrala sin soltar hasta soltarla <em>encima de la columna correspondiente</em> en la tabla destino.</li>
+    </ol>
+
+    <h3>4.2 Categorización Geográfica para Mapas</h3>
+    <p>Para que los visuales de mapas de Power BI ubiquen de forma correcta las ciudades o países en el globo terráqueo, debes especificar que esos datos son geográficos.</p>
+
+    <ol>
+        <li>Ve a la <code>Vista de tabla</code>.</li>
+        <li>Selecciona la columna <samp>País</samp> de tu tabla <samp>casas</samp>. En la cinta superior, entra en la pestaña <code>Herramientas de columnas</code>.</li>
+        <li>Despliega la opción <code>Categoría de datos</code> (que por defecto dice <em>Sin clasificar</em>) y selecciona <code>País o región</code>. Verás que aparece un pequeño icono de mundo al lado del nombre de la columna <samp>Pais</samp> en el área de  <b>Datos</b>.</li>
+        <li>Repite la operación seleccionando la columna <strong>Ciudad</strong> y cambiando su categoría de datos a <code>Ciudad</code>.</li>
+        <li>Ahora, cambia a la <code>Vista de informe</code> y cambia el nombre de la <code>Página</code> por <kbd>Dashboard</kbd></li>
+        <li>Agrega una nueva página (botón <b>+</b>) a la cual  llamarás <kbd>Mapa</kbd></li>
+        <li><p>Inserta el visual de <code>Mapa</code>. Por motivos de seguridad y privacidad, Microsoft viene con la opción de los mapas desactivada por defecto.</p>
+        <h4>Cómo activar los mapas en Power BI</h4>        
+        <ul>          
+          <li>Ve a la esquina superior izquierda y haz clic en <code>Archivo</code>.</li>
+          <li>En el menú lateral que se despliega, selecciona <code>Opciones y configuración</code> y luego haz clic en <code>Opciones</code>.</li>
+          <li>Se abrirá una ventana flotante con muchas opciones. En la barra lateral izquierda, busca la sección que dice <code>Global</code> y haz clic en <code>Seguridad</code>.</li>
+          <li><p>Desplázate hacia abajo en las opciones de seguridad hasta que encuentres el apartado llamado <code>Objetos visuales de mapa y mapa coroplético</code></p>
+          <figure>
+            <img  class="img-grande" src="./img/activar-mapas.png" alt="Activar Mapas">
+            <figcaption>Activar Mapas</figcaption>
+          </figure>
+          </li>
+          <li>Marca la casilla que dice <code>Permitir objetos visuales de mapa y mapa coroplético</code>.</li>
+          <li>Haz clic en <code>Aceptar</code>.</li>
+        </ul>
+        <li>Ahora, arrastra el campo <samp>País</samp> a la zona de <code>Ubicación/Leyenda</code> y <samp>Fragancia</samp> a <code>Tamaño de la burbuja</code>. </li>
+        <li><p>Agrega un nuevo visual <code>Segmentación de Datos</code> y arrastra el campo <samp>Pais</samp> a la opción <code>Campo</code>. Tu Dashboard deberá lucir de la siguiente manera:</p>
+        <figure>
+          <img  class="img-grande" src="./img/mapa.png" alt="Hoja Mapa">
+          <figcaption>Hoja Mapa</figcaption>
+        </figure>
+        </li>
+        <li>Guarda los cambios en tu archivo <samp>fragancias.pbix</samp> (seleccionando <code>Archivo > Guardar</code>).</li>
+    </ol>
 
   </section>
 
