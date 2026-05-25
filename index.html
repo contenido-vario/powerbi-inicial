@@ -343,10 +343,222 @@
   </section>
 
   <section id="t5">
-    <h2>Tema 5: Transformaciones, Medidas DAX y Cuadro de Mando Final</h2>
+    <h2>Tema 5: Transformaciones Avanzadas, Medidas DAX y Cuadro de Mando Final</h2>
+    <p>En este último ejercicio crearemos un nuevo dashboard a partir de diverses fuentes de datos.</p>
+    <h3><img class="icon" src="./img/attach.svg" alt="icon attach"> Archivos a descargar</h3>
+    <ul>
+      <li><a download href="./assets/ventas.zip">ventas.zip</a> (Carpeta a descargar y descomprimir)</li>
+      <li><a download href="./assets/provincias.xlsx">provincias.xlsx</a></li>
+      <li><a download href="./assets/gerentes.txt">gerentes.txt</a></li>
+      <li><a download href="./assets/logo.jpg">logo.jpg</a></li>
+    </ul>
+    <h3><img class="icon"  src="./img/footprint.svg" alt="icon footprint"> Pasos previos</h3>
+    <ul>
+      <li>Descarga los archivos del tema.</li>
+      <li>Entre ellos, encontrarás un archivo comprimido (<b>ventas.zip</b>) con las ventas de diferentes meses.</li>
+      <li>Descomprime el archivo. Para hacerlo, haz clic con el botón derecho del ratón sobre su nombre y selecciona <code>Extraer todo...</code>.</li>
+    </ul>
 
-    <h3>Martes 21-Mayo</h3>
+    <h3>5.1 Anulación de dinamización en Power Query (Unpivot)</h3>
+    <p>A menudo recibimos datos mensuales tabulados en columnas horizontales (Estilo: Enero | Febrero | Marzo), lo cual es pésimo para el análisis de datos. Debemos transformar esas columnas en filas verticales.</p>
 
+    <ol>
+      <li>
+        <p>Abre <strong>PowerBI Desktop</strong> y selecciona de la lista deslizante clicando sobre el símbolo <b>&gt;</b> <code>Seleccione un origen de datos o empiece con un informe en blanco</code>, la opción <code>Obtener datos de otros orígenes</code></p>
+        <figure>
+          <img src="./img/obtener_datos_de_otros_orígenes.png" alt="Obtener datos de otros orígenes">
+          <figcaption>botón: Obtener datos de otros orígenes</figcaption>
+        </figure>
+      </li>
+      <li>
+        <p>Selecciona <code>Obtener datos > Carpeta</code> para combinar múltiples archivos mensuales de una carpeta. Clica sobre el botón <code>Conectar</code>.
+        </p>
+        <figure>
+          <img class="img-grande" src="./img/obtener_datos_carpeta.png" alt="Pantalla: obtener datos carpeta">
+          <figcaption>pantalla: Obtener Datos &gt; Carpeta</figcaption>
+        </figure>
+      </li> 
+      <li>
+        <p>Selecciona la carpeta donde están los archivos a utilizar (en este caso <samp>ventas</samp>) y haz clic sobre el botón <code>Aceptar</code></p>
+        <figure>
+          <img class="img-grande"  src="./img/seleccionar_carpeta_ventas.png" alt="Pantalla: seleccionar carpeta ventas">
+          <figcaption>pantalla: Seleccionar carpeta</figcaption>
+        </figure>
+        <p><img class="icon" src="./img/alert.svg" alt="icon alert"> Para poder utilizar ésta opción, todos los archivos de la carpeta deberán tener la misma estructura.</p>         
+      </li>
+      <li>
+        <p>Aparecerá una pantalla como la siguiente. <img class="icon" src="./img/warning.svg" alt="icon warning">Ten cuidado de seleccionar la opción  <code>Combinar y transformar datos</code> desde el botón <code>Combinar</code>.
+        </p>
+        <figure>
+          <img class="img-grande" src="./img/combinar_y_transformar_datos.png" alt="Combinar y transformar datos">
+          <figcaption>opción: Combinar y transformar datos</figcaption>
+        </figure>        
+      </li>
+      <li><p>En la pantalla <code>Combinar archivos</code>, selecciona la opción <samp>ventas</samp>. Se cargarán los datos de todos los archivos de la carpeta de ventas en el <strong>Editor de Power Query</strong>. Toma en cuenta que ésto se abre en una ventana adicional a la ventana del Power BI.</p></li>
+      <li>
+        <p>Observa cómo Power BI ha combinado los datos de todas las tablas en una sola. En la primera columna, verás de qué fichero proceden.</p>
+      </li>
+      <li>
+        <p>Para limpiar las fechas de los nombres de los archivos, haz clic derecho en la
+        columna <samp>Source.Name</samp> (desde el Editor de Power Query).</p>
+        <figure>
+          <img class="img-grande" src="./img/sourcename.png" alt="Columna Source.Name">
+          <figcaption>opción: Columna Source.Name</figcaption>
+        </figure>          
+      </li>          
+      <li>
+        <p>Selecciona <code>Reemplazar valores</code> y reemplaza el texto <kbd>_ventas.xlsx</kbd> por un valor vacío. Haz clic sobre <code>Aceptar</code></p>
+        <figure>
+          <img class="img-grande"  src="./img/reemplazar_valores.png" alt="Reemplazar valores">
+          <figcaption>Reemplazar valores</figcaption>
+        </figure>           
+      </li>
+      <li>
+        <p><strong>Dividir columna:</strong> Haz clic derecho sobre esa misma columna, selecciona <code>Dividir columna > Por número de caracteres</code>. Indica <kbd>4</kbd> caracteres y selecciona la opción <code>Una vez, lo más a la izquierda posible</code>.<br>Esto te separará de forma perfecta el <b>año</b> del <b>mes</b>. Renombra las columnas resultantes como <kbd>Año</kbd> y <kbd>Mes</kbd> respectivamente.</p></li>
+      <li>
+        <p><strong>Anulación de dinamización:</strong> Selecciona las tres columnas (<samp>Año, Mes</samp> y <samp>Producto</samp>), haz clic derecho sobre cualquiera de ellas y elige la opción <code>Anulación de dinamización de otras columnas</code>.</p>
+        <figure>
+          <img class="img-grande" src="./img/anular_dinamizacion.png" alt="Anulación de dinamización">
+          <figcaption>opción: Anulación de dinamización de otras columnas</figcaption>
+        </figure> 
+      </li>
+      <li>
+        <p>Verás que las columnas horizontales de meses se han convertido en un listado vertical compacto. Renombra la columna de propiedades <code>Atributo</code> como <kbd>Provincia</kbd> y la columna <code>Valor</code> como <kbd>Ventas</kbd>.</p>
+      </li>
+      <li>
+        <p>En el menú de <code>Inicio</code>, haz clic en <code>Cerrar y aplicar</code> (Primer icono).</p>
+        <figure>
+          <img src="./img/cerrar_y_aplicar.png" alt="Icono Cerrar y Aplicar">
+          <figcaption>Icono Cerrar y Aplicar</figcaption>
+        </figure>           
+      </li>
+      <li>Al regresar a Power BI, selecciona la <code>Vista de Tabla</code> para que puedas apreciar los cambios</li>
+      <li>Guarda los cambios en tu archivo (seleccionando
+        <code>Archivo > Guardar como</code>), con el nombre de <kbd>ventas.pbix</kbd> .</li>
+    </ol>
+    <hr>
+    <h3>5.2 Creación de Medidas DAX Eficientes</h3>
+    <p>Para calcular el total general de ventas de nuestro nuevo modelo:</p>
+
+    <ol>
+      <li>Ve a la pestaña <strong>Herramientas de tablas</strong> en la cinta superior y haz clic en <strong>Nueva
+          medida</strong>.</li>
+      <li>En la barra de fórmulas escribe:<br />
+        <code>Total_Ventas = SUM(Ventas[Ventas])</code><br />
+        Presiona ENTER.
+      </li>
+      <li>Observarás que la medida aparece en tu panel de datos con el icono de una <strong>calculadora</strong>. Nota
+        que a diferencia de las columnas, su resultado no se muestra en la vista de tabla; las medidas solo cobran
+        vida cuando las colocas dentro de un gráfico en el informe.</li>
+      <li>En la pestaña de formato, asígnale el formato de <strong>Moneda</strong>.</li>
+    </ol>
+
+    <p>Las diferencias entre columnas calculadas y medidas se muestran en esta tabla resumen:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th><img src="./img/columna.svg" alt="-"> Columna Calculada</th>
+          <th><img src="./img/medida.svg" alt="-"> Medida DAX</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>¿Cuándo se calcula?</strong></td>
+          <td>Al cargar o actualizar los datos (fila por fila).</td>
+          <td>"Al vuelo", solo cuando el usuario hace clic en un gráfico.</td>
+        </tr>
+        <tr>
+          <td><strong>¿Ocupa espacio?</strong></td>
+          <td>Sí, consume memoria RAM y agranda el archivo .pbix.</td>
+          <td>No ocupa espacio en el disco duro.</td>
+        </tr>
+        <tr>
+          <td><strong>¿Dónde se ve?</strong></td>
+          <td>Se ve como una nueva columna física en la Vista de Tabla.</td>
+          <td>Solo se ve el icono de calculadora; su resultado aparece al meterla en un
+            gráfico.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5.3. Agregar Datos al Modelo</h3>
+    <p>Desde la pantalla de Power BI se pueden añadir más fuentes de datos al modelo, seleccionando la opción <code>Obtener Datos</code> del menú de <code>Inicio</code></p>
+    <figure>
+      <img class="img-grande" src="./img/obtener_datos.png" alt="Inicio - Obtener datos">
+      <figcaption>opción Obtener datos</figcaption>
+    </figure> 
+
+    <ol>
+      <li><p>Selecciona <code>Texto o CSV</code> para importar el archivo <samp>Gerentes.txt</samp></p></li>
+      <li>Cambia el nombre de las columnas  <samp>columna1</samp> y <samp>columna2</samp> de la tabla <code>Gerentes</code> a <kbd>Id</kbd> y <kbd>Director</kbd> respectivamente. Para ello deberás hacer doble clic en el nombre de la columna.</li>
+      <li><p>Repite la operación seleccionando <code>Libro de Excel</code> para importar <strong>la tabla <samp>Provincias</samp></strong> del fitxer <samp>Provincias.xlsx</samp></p></li>
+    </ol>
+    <hr>
+    <h3>5.4. Relacionar las tablas del modelo</h3>
+    <p>Entra a la <code>Vista de modelo</code>. Recuerda que en esta vista podemos mirar y cambiar la forma en que se relacionan las tablas.</p>
+    <ol>
+      <li>
+        <p>Relaciona las tablas <code>gerentes</code> y <code>Provincias</code> arrastrando la columna <samp>Id</samp> de la tabla <code>gerentes</code> hacia la columna <samp>idGerente</samp> de la tabla <code>Provincias</code>.</p>
+        <figure>
+          <img class="img-grande" src="./img/relacionar.png" alt="relacionar tablas">
+          <figcaption>crear | editar relación entre tablas</figcaption>
+        </figure>
+      </li>               
+      <li>
+        <p>Relaciona las tablas <code>ventas</code> y <code>Provincias</code> arrastrando la columna <samp>Provincias</samp> de la tabla <code>ventas</code> hacia la columna <samp>Provincia</samp> de la tabla <code>Provincias</code>.</p>
+        <p>Tu pantalla debería lucir similar a la siguiente:</p>
+        <figure>
+          <img class="img-grande" src="./img/relaciones.png" alt="relaciones">
+          <figcaption>Vista de Modelo. Relaciones entre tablas.</figcaption>
+        </figure>
+      </li>
+      <li><img src="./img/save.svg" alt="guardar">Guarda los cambios. </li>
+    </ol>
+
+
+    <hr>
+    <h3>5.5. Elementos del Dashboard: Tarjetas, Filtros y Elementos Visuales Adicionales</h3>
+    <p>Vamos a estructurar la presentación visual del Dashboard en la <strong>Vista de informe</strong>:</p>
+
+    <ol>
+      <li>
+        <p><strong>Uso de Tarjetas (KPI):</strong> Inserta el visual de <samp>Tarjeta</samp>.</p>
+        <figure>
+          <img src="./img/card.png" alt="relaciones">
+          <figcaption>Tarjeta</figcaption>
+        </figure>
+        <p>Arrastra la medida <samp>Total_Ventas</samp> al cuadro <code>valor</code> del visual (en la sección <b>Compilar visual</b>).<br>Se mostrará el Total acumulado de las ventas.</p>
+      </li>
+      <li>
+        <p><strong>Segmentación de datos (Filtros interactivos):</strong> Selecciona el visual de <code>Segmentación de datos</code> (icono de un embudo junto a una lista). Arrastra el campo <samp>Director</samp> al cuadro <code>campo</code>.
+        Ahora, al hacer clic en el nombre de cualquier director en la lista, todo el informe se filtrará al instante para mostrar solo sus resultados.</p>
+      </li>
+      <li><p><strong>Datos de ventas:</strong> Crea un gráfico de barras que muestre las ventas mensuales. Arrastra el <samp>Mes</samp> al <code>Eje X</code>, <samp>Suma de Ventas</samp> al <code>Eje Y</code> y <samp>Provincias</samp> a <code>Leyenda</code> </p></li>
+      <li><p><strong>Diseño e Identidad:</strong> Utiliza los botones del menú <code>Insertar</code> para añadir un <code>Cuadro de texto</code> ( <img src="./img/text.svg" alt="icono text"> ) con el título <kbd>Informe de ventas</kbd> y el botón <code>Imagen</code> ( <img src="./img/picture.svg" alt="icono picture"> ) para colocar el logo que descargaste al inicio de la práctica.</p></li>
+      <li>
+        <p>Tu Dashboard deberá lucir similar al siguiente:</p>
+        <figure>
+          <img class="img-grande" src="./img/ventas.png" alt="Dashboard de ventas">
+          <figcaption>Dashboard de ventas</figcaption>
+        </figure>
+      </li>
+      <li><p><img src="./img/save.svg" alt="guardar">Guarda los cambios.</p></li>
+
+
+    </ol>
+
+    <h3>5.5 Obtener más visuales (AppSource)</h3>
+    <p>Si los gráficos nativos de Power BI no cubren todas tus necesidades de diseño, puedes expandir el catálogo utilizando la tienda de componentes oficial de Microsoft.</p>
+
+    <ol>
+      <li>En la zona de selección de gráficos de Power BI, busca el icono de los <strong>tres puntos (...)</strong> que indica <code>Obtener más visuales</code>.</li>
+      <li>Al hacer clic se abrirá la ventana de <strong>AppSource de Microsoft</strong> directamente dentro de la aplicación.</li>
+      <li>Puedes explorar miles de visuales avanzados creados por Microsoft y partners certificados (gráficos de velocímetros, diagramas de Gantt avanzados, mapas de calor, etc.).</li>
+      <li>Para utilizarlos, solo debes hacer clic en el visual que te guste y presionar <code>Agregar</code>. Se incorporará instantáneamente a tu barra de herramientas para ese proyecto.</li>
+    </ol>
+    <p><em>(Nota: Para acceder a AppSource es indispensable que hayas iniciado sesión con tu cuenta de correo profesional o educativa de la organización).</em></p>
+    <p>También puedes ir directamente al <a href="https://visuals.powerbi.com" target="_blank" rel="noopener noreferrer">Market Place de Microsoft</a> para observar toda la oferta existente.</p>
   </section>
 </main>
 </body>
